@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+</head>
+    <body>
+        <h1>{{ title }}</h1>
+        <div class="table-responsive">
+            <table id="dt" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Author</th>
+                        <th>Added</th>
+                        <th>Renew</th>
+                        <th>Downloaded</th>
+                        <th>Downloads</th>
+                    </tr>
+                </thead>
+                <tbody>
+            {% for item in body: %}
+                <tr>
+                    <td><a href="{{ item[1] }}">{{ item[0] }}</a></td>
+                    <td>{{ item[2] }}</td>
+                    <td>{{ item[3] }}</td>
+                    <td>{{ item[4] }}</td>
+                    <td>{{ item[5] }}</td>
+                    <td>{{ item[6] }}</td>
+                    <td>{{ item[7] }}</td>
+                    <td>{{ item[8] }}</td>
+                    <td>
+                        <ul>
+                        {% for link in item[9] %}
+                            <li>{{ link }}</li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dt').DataTable();
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+    </body>
+</html>
